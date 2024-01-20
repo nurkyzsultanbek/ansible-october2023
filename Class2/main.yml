@@ -1,0 +1,25 @@
+- hosts: all
+  tasks:
+  - name: install the latest version of Apache
+    yum:
+      name: git
+      state: latest
+    notify: restart httpd 
+  - name: Install unzip
+    yum:
+      name: unzip
+      state: present 
+    notify: Install tree       
+  handlers:    
+  - name: restart httpd
+    service:
+      name: httpd
+      state: restarted  
+  - name: Install wget
+    yum:
+      name: wget
+      state: present
+  - name: Install tree
+    yum:
+      name: tree
+      state: present          
